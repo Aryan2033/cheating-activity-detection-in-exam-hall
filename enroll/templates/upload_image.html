@@ -1,0 +1,38 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection</title>
+    
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style12.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+    <h1>Object Detection</h1>
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" class="form-control" accept="image/*" required><br>
+        <button type="submit" class="btn btn-success btn-block mx-5">Detect Objects</button>
+    </form>
+    <div class="container he">
+    <div id="result-container" ></div>
+</div>
+
+</div>
+</body>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+</html>

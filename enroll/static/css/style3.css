@@ -1,0 +1,9 @@
+body{
+    background: url('/static/images/vb.jpeg') no-repeat top fixed; width:100%; height:100vh;
+    background-size: cover;
+    position: relative;
+}
+h1{
+    color: blue;
+    
+}

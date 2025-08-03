@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: linear-gradient(to right, #74ebd5, #ACB6E5); height: 100vh; display: flex; align-items: center; justify-content: center;">
+
+    <div style="background-color: white; padding: 40px 30px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); width: 90%; max-width: 500px; text-align: center;">
+        <h2 style="margin-bottom: 30px; color: #333;">📹 Upload Video for Detection</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="video" accept="video/*" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 20px;"><br>
+
+            <button type="submit"
+                style="background-color: #28a745; color: white; padding: 10px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                Upload
+            </button>
+        </form>
+
+        {% if error_message %}
+        <p style="color: red; margin-top: 20px;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

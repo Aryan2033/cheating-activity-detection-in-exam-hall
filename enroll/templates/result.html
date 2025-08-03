@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef1f5;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .video-section {
+            margin: 30px auto;
+        }
+        video {
+            width: 480px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+        .object-list {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .object-item {
+            padding: 6px;
+            border-bottom: 1px solid #ddd;
+        }
+        .object-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Object Detection Results</h1>
+
+    <div class="video-section">
+        <h2>Uploaded Video</h2>
+        <video controls>
+            <source src="{{ original_video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <a class="download-btn" href="{{ original_video_url }}" download>Download Original</a>
+    </div>
+
+    <div class="video-section">
+        <h2>Processed Video (Detection Applied)</h2>
+        <br>
+        <a class="download-btn" href="{{ processed_video_url }}" download>Download Processed</a>
+    </div>
+
+    <div class="video-section">
+        <h2>Detected Objects</h2>
+        {% if detected_objects %}
+            <div class="object-list">
+                {% for obj in detected_objects %}
+                    <div class="object-item">
+                        🧠 <strong>{{ obj.label }}</strong> - Confidence: {{ obj.confidence }}%
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No objects detected in the video.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

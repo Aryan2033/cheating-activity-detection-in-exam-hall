@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Sign Detector</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<style>
+    /* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading Style */
+.title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Button Style */
+.btn-primary {
+    padding: 12px 32px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Video Feed Wrapper */
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Frame */
+.video-feed {
+    max-width: 100%;
+    width: 90vw;
+    height: auto;
+    border-radius: 10px;
+    border: 4px solid #007bff;
+}
+
+</style>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="title">Exam Hall Cheating Detection</h1>
+
+        <form method="get" action="{% url 'video_feed' %}">
+            <button type="submit" class="btn btn-primary btn-lg mt-4">Start Detection</button>
+        </form>
+
+        <div class="video-wrapper mt-5">
+            <img src="{% url 'video_feed' %}" alt="Live Video Feed" class="video-feed">
+        </div>
+    </div>
+</body>
+</html>

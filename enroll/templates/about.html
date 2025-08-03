@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <title>Document</title> 
+    <style>
+        h1{
+            text-align: center;
+        }
+        body{
+            /* background-color: blueviolet; */
+            /* color: aliceblue; */
+        }
+        .img-fluid{
+            border: 1px solid;
+            border: radius 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-2">
+   <h1><b> Video Surveillance Exam System  </b></h1>
+
+    <p>
+        Welcome to our People Trees Detection project! We are passionate about harnessing the power of drones and advanced computer vision techniques to address environmental challenges.
+
+        Unmanned aerial vehicles (UAVs) are aircraft with no on-board crew or passengers.
+        They can be automated ‘drones’ or remotely piloted vehicles (RPVs). UAV’s can fly for long periods
+        of time at a controlled level of speed and height and have a role in many aspects of aviation. A drone
+        can have many types of sensors to collect information, such as changes in speed, distance,
+        temperature, wind, chemical signals, light, sound, and can even identify the presence of magnetic
+        objects. However, drone professionals, organisations, and users of varied unmanned air vehicles
+        know that the value of this advanced technology extends to many useful drone applications and
+        view the data collected by drones as extremely helpful.
+
+    </p>
+    
+        
+    <div class="row">
+        <div class="col-6 my-2">
+            <img src="{% static 'images/cft.jpg' %}" alt="My image" class="img-fluid my-2" style="height:10% width:600px;">
+            <img src="{% static 'images/vde.jpg' %}" alt="My image" class="img-fluid" >
+        </div>
+        <div class="col-6"> 
+            <h2>
+                Detecting vedio-captured images
+            </h2>
+            <p>
+                Detecting people and trees in drone-captured images typically involves using computer vision techniques, and specifically, Convolutional Neural Networks (CNNs) can be highly effective for image recognition tasks. Here's a simplified overview of the process:
+
+<hr>
+                <B>Data Collection:</b> Use drones equipped with high-resolution cameras to capture images of the target areas.<hr>
+<b>Preprocessing:</b> Adjust image quality and contrast for better analysis.
+Geo-referencing: Associate each image with its geographical location if spatial information is crucial.<hr>
+<b>Model Selection:</b> Choose a suitable machine learning model for object detection. Convolutional Neural Networks (CNNs) are commonly used for image-related tasks.<hr>
+<b>Training:</b> Gather a diverse dataset containing annotated images of people and trees. Train the CNN on this dataset to learn features and patterns associated with people and trees.
+<hr>
+<b>Post-Processing:</b> Filtering: Remove false positives and refine the results to improve accuracy.
+Classification: Classify detected objects into categories (e.g., different tree species).
+<hr>
+
+<p>Several libraries and frameworks, such as TensorFlow and OpenCV, provide tools for building and deploying such computer vision models. Keep in mind that the accuracy of the model depends on the quality and diversity of the training data, as well as the complexity of the model architecture.
+
+
+
+
+</p>
+
+
+
+
+
+            </p>
+        </div>
+    </div>
+     
+    </div>
+</body>
+</html>
