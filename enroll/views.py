@@ -155,7 +155,7 @@ def detect_objects_in_video(video_path, output_path):
     from ultralytics import YOLO
     import cv2
 
-    model = YOLO('best.pt')
+    model = YOLO('best (16).pt')
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         print("Error opening video file:", video_path)
@@ -172,7 +172,7 @@ def detect_objects_in_video(video_path, output_path):
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-    detected_objects = []
+    detected_objects = {}
 
     while ret:
         results = model(frame)[0]
@@ -183,16 +183,24 @@ def detect_objects_in_video(video_path, output_path):
             cls_id = int(box.cls[0])
             conf = float(box.conf[0])
             label = model.names[cls_id]
+            is_cheating = label.lower() == "cheating"
+            box_color = (0, 0, 255) if is_cheating else (0, 255, 0)
 
             # Draw box and label
-            cv2.rectangle(frame, (bb[0], bb[1]), (bb[2], bb[3]), (0, 255, 0), 2)
+            cv2.rectangle(frame, (bb[0], bb[1]), (bb[2], bb[3]), box_color, 3)
             cv2.putText(frame, f"{label} {conf:.2f}", (bb[0], bb[1] - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, box_color, 2)
 
-            detected_objects.append({
-                "label": label,
-                "confidence": round(conf * 100, 2)  # as percentage
-            })
+            if is_cheating:
+                cv2.rectangle(frame, (0, 0), (width - 1, height - 1), (0, 0, 255), 12)
+
+            current_best = detected_objects.get(label)
+            if current_best is None or conf > current_best["confidence_raw"]:
+                detected_objects[label] = {
+                    "label": label,
+                    "confidence": round(conf * 100, 2),
+                    "confidence_raw": conf,
+                }
 
         out.write(frame)
         ret, frame = cap.read()
@@ -200,7 +208,14 @@ def detect_objects_in_video(video_path, output_path):
     cap.release()
     out.release()
 
-    return detected_objects
+    return sorted(
+        [
+            {"label": item["label"], "confidence": item["confidence"]}
+            for item in detected_objects.values()
+        ],
+        key=lambda item: item["confidence"],
+        reverse=True,
+    )
 
 def upload_video(request):
     if request.method == 'POST' and request.FILES.get('video'):
