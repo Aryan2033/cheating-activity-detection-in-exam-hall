@@ -1,5 +1,5 @@
 """
-WSGI config for Drones_detection project.
+WSGI config for exam hall cheating detection project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Drones_detection.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'exam_hall_detection.settings')
 
 application = get_wsgi_application()

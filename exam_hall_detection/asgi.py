@@ -1,5 +1,5 @@
 """
-ASGI config for Drones_detection project.
+ASGI config for exam hall cheating detection project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Drones_detection.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'exam_hall_detection.settings')
 
 application = get_asgi_application()
